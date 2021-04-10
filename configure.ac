@@ -19,7 +19,7 @@ PKG_CHECK_MODULES([SDL2_IMAGE], [SDL2_image], [], [AC_MSG_ERROR(count not find S
 
 # Checks for library functions.
 
-AM_INIT_AUTOMAKE
+AM_INIT_AUTOMAKE([subdir-objects])
 AC_CONFIG_FILES([Makefile
                  src/Makefile])
 AC_OUTPUT

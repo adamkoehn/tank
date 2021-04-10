@@ -1,9 +1,12 @@
 #include <SDL2/SDL.h>
 
 #include "input.h"
-#include "tank.h"
 #include "time.h"
 #include "render.h"
+#include "object.h"
+
+#include "module/module_sprite.h"
+#include "module/module_controller.h"
 
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 600
@@ -15,7 +18,7 @@ int main(void)
     struct time time;
     struct inputsystem system;
     struct controller controller;
-    struct tank tank;
+    struct object tank;
 
     struct controller *controllers[2];
 
@@ -33,16 +36,23 @@ int main(void)
         window,
         -1,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 
     render_init(&render, renderer);
     input_system_init(&system);
     input_controller_init(&controller);
-    tank_init(
+    object_init(
         &tank,
-        &controller,
         SCREEN_WIDTH / 2,
         SCREEN_HEIGHT / 2,
-        render_load_texture(&render, "assets/tank.png"));
+        32,
+        32);
+    module_sprite_attach(
+        &tank,
+        render_load_texture(&render, "assets/tank.png"),
+        1.0,
+        1.0);
+    module_controller_attach(&tank, &controller);
 
     time_init(&time);
     while (run)
@@ -56,20 +66,15 @@ int main(void)
 
         // Update
         time_tick(&time);
-        tank_update(&tank, time.scale);
+        object_update_modules(&tank, time.scale);
 
         // Render
         render_clear(&render);
-        SDL_Rect loc = (SDL_Rect){
-            .x = tank.x + 16,
-            .y = tank.y + 16,
-            .w = 32,
-            .h = 32,
-        };
-        render_draw_texture(&render, tank.texture, &loc);
+        object_render_modules(&tank, &render);
         render_present(&render);
     }
 
+    object_free(&tank);
     render_free(&render);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
