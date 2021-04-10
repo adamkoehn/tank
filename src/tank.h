@@ -5,13 +5,14 @@
 
 struct tank
 {
+    int texture;
     struct controller *controller;
     float speed;
     float x;
     float y;
 };
 
-void tank_init(struct tank *, struct controller *, float, float);
+void tank_init(struct tank *, struct controller *, float, float, int);
 
 void tank_update(struct tank *, float);
 

@@ -1,7 +1,8 @@
 #include "tank.h"
 
-void tank_init(struct tank *tank, struct controller *controller, float x, float y)
+void tank_init(struct tank *tank, struct controller *controller, float x, float y, int texture)
 {
+    tank->texture = texture;
     tank->controller = controller;
     tank->speed = 3.0;
     tank->x = x;

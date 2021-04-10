@@ -11,6 +11,7 @@ AC_PROG_CC
 
 # Checks for libraries.
 PKG_CHECK_MODULES([SDL2], [sdl2], [], [AC_MSG_ERROR([could not find sdl2])])
+PKG_CHECK_MODULES([SDL2_IMAGE], [SDL2_image], [], [AC_MSG_ERROR(count not find SDL2_image)]);
 
 # Checks for header files.
 
