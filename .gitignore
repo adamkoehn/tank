@@ -1,0 +1,14 @@
+**/.deps
+**/*.o
+**/Makefile
+**/Makefile.in
+
+.vscode/
+autom4te.cache/
+autoscan.log
+config.*
+configure
+configure.scan
+stamp-h1
+
+src/tank
