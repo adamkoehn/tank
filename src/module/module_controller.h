@@ -11,7 +11,7 @@ struct modcontroller {
     float speed;
 };
 
-void module_controller_attach(struct object *object, struct controller *controller);
+void module_controller_attach(struct object *object, struct controller *controller, float speed);
 
 
 #endif

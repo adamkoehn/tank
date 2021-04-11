@@ -1,10 +1,5 @@
 #include "module_sprite.h"
 
-static void module_sprite_update(struct module *module, struct object *object, float timescale)
-{
-    //
-}
-
 static void module_sprite_render(struct module *module, struct object *object, struct render *render)
 {
     struct sprite *sprite = (struct sprite *)module->data;
@@ -33,7 +28,6 @@ void module_sprite_attach(struct object *object, int texture, float scaleX, floa
     sprite->scale.x = scaleX;
     sprite->scale.y = scaleY;
 
-    module->update = module_sprite_update;
     module->render = module_sprite_render;
     module->free = module_sprite_free;
     module->data = (void *)sprite;

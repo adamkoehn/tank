@@ -41,7 +41,10 @@ void object_update_modules(struct object *object, float timescale)
     int i;
     for (i = 0; i < object->mod.size; i++)
     {
-        object->mod.modules[i].update(&object->mod.modules[i], object, timescale);
+        if (object->mod.modules[i].update)
+        {
+            object->mod.modules[i].update(&object->mod.modules[i], object, timescale);
+        }
     }
 }
 
@@ -50,6 +53,9 @@ void object_render_modules(struct object *object, struct render *render)
     int i;
     for (i = 0; i < object->mod.size; i++)
     {
-        object->mod.modules[i].render(&object->mod.modules[i], object, render);
+        if (object->mod.modules[i].render)
+        {
+            object->mod.modules[i].render(&object->mod.modules[i], object, render);
+        }
     }
 }

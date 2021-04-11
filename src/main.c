@@ -36,7 +36,6 @@ int main(void)
         window,
         -1,
         SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
 
     render_init(&render, renderer);
     input_system_init(&system);
@@ -52,7 +51,7 @@ int main(void)
         render_load_texture(&render, "assets/tank.png"),
         1.0,
         1.0);
-    module_controller_attach(&tank, &controller);
+    module_controller_attach(&tank, &controller, 3.0);
 
     time_init(&time);
     while (run)

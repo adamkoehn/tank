@@ -7,17 +7,12 @@ static void module_controller_update(struct module *self, struct object *selfobj
     selfobj->y += (mod->controller->y * mod->speed) * timescale;
 }
 
-static void module_controller_render(struct module *self, struct object *selfobj, struct render *render)
-{
-    //
-}
-
 static void module_controller_free(struct module *self)
 {
     free(self->data);
 }
 
-void module_controller_attach(struct object *object, struct controller *controller)
+void module_controller_attach(struct object *object, struct controller *controller, float speed)
 {
     struct module *module = object_add_module(object);
     struct modcontroller *mod = malloc(sizeof(struct modcontroller));
@@ -27,6 +22,5 @@ void module_controller_attach(struct object *object, struct controller *controll
 
     module->update = module_controller_update;
     module->free = module_controller_free;
-    module->render = module_controller_render;
     module->data = (void *)mod;
 }
