@@ -34,8 +34,8 @@ struct controller
         enum inputstate right;
         enum inputstate fire;
     } state;
-    float x;
-    float y;
+    double x;
+    double y;
     int fire;
 };
 

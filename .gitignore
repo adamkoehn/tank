@@ -2,6 +2,7 @@
 **/*.o
 **/Makefile
 **/Makefile.in
+**/.dirstamp
 
 .vscode/
 autom4te.cache/

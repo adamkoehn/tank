@@ -1,6 +1,6 @@
 #include "object.h"
 
-void object_init(struct object *object, float x, float y, float w, float h)
+void object_init(struct object *object, double x, double y, double w, double h)
 {
     object->x = x;
     object->y = y;

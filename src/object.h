@@ -10,10 +10,10 @@ struct module;
 
 struct object
 {
-    float x;
-    float y;
-    float h;
-    float w;
+    double x;
+    double y;
+    double h;
+    double w;
     struct
     {
         int size;
@@ -24,13 +24,13 @@ struct object
 
 struct module
 {
-    void (*update)(struct module *self, struct object *selfobj, float timescale);
+    void (*update)(struct module *self, struct object *selfobj, double timescale);
     void (*render)(struct module *self, struct object *selfobj, struct render *render);
     void (*free)(struct module *self);
     void *data;
 };
 
-void object_init(struct object *, float, float, float, float);
+void object_init(struct object *object, double x, double y, double w, double h);
 
 void object_free(struct object *);
 

@@ -1,10 +1,13 @@
 #include "module_controller.h"
 
-static void module_controller_update(struct module *self, struct object *selfobj, float timescale)
+static void module_controller_update(struct module *self, struct object *selfobj, double timescale)
 {
     struct modcontroller *mod = (struct modcontroller *)self->data;
-    selfobj->x += (mod->controller->x * mod->speed) * timescale;
-    selfobj->y += (mod->controller->y * mod->speed) * timescale;
+    struct vector vector = {.x = mod->controller->x, .y = mod->controller->y};
+    vector_multiply(&vector, mod->speed * timescale);
+
+    selfobj->x += vector.x;
+    selfobj->y += vector.y;
 }
 
 static void module_controller_free(struct module *self)
@@ -12,7 +15,7 @@ static void module_controller_free(struct module *self)
     free(self->data);
 }
 
-void module_controller_attach(struct object *object, struct controller *controller, float speed)
+void module_controller_attach(struct object *object, struct controller *controller, double speed)
 {
     struct module *module = object_add_module(object);
     struct modcontroller *mod = malloc(sizeof(struct modcontroller));

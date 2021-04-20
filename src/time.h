@@ -7,7 +7,7 @@ struct time
 {
     Uint32 previous;
     Uint32 current;
-    float scale;
+    double scale;
 };
 
 void time_init(struct time *);

@@ -5,13 +5,14 @@
 
 #include "../object.h"
 #include "../input.h"
+#include "../vector.h"
 
 struct modcontroller {
     struct controller *controller;
-    float speed;
+    double speed;
 };
 
-void module_controller_attach(struct object *object, struct controller *controller, float speed);
+void module_controller_attach(struct object *object, struct controller *controller, double speed);
 
 
 #endif

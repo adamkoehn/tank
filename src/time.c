@@ -13,5 +13,5 @@ void time_tick(struct time *time)
 {
     time->previous = time->current;
     time->current = SDL_GetTicks();
-    time->scale = ((float)time->current - (float)time->previous) / 16.0;
+    time->scale = ((double)time->current - (double)time->previous) / 16.0;
 }

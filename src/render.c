@@ -22,6 +22,7 @@ void render_free(struct render *render)
 
 void render_clear(struct render *render)
 {
+    SDL_SetRenderDrawColor(render->renderer, 0x00, 0x00, 0x00, 0x00);
     SDL_RenderClear(render->renderer);
 }
 
